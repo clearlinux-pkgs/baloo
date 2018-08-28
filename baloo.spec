@@ -6,7 +6,7 @@
 #
 Name     : baloo
 Version  : 5.49.0
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/frameworks/5.49/baloo-5.49.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.49/baloo-5.49.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.49/baloo-5.49.0.tar.xz.sig
@@ -20,6 +20,7 @@ Requires: baloo-license
 Requires: baloo-locales
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : kbookmarks-dev
 BuildRequires : kcodecs-dev
 BuildRequires : kcompletion-dev
 BuildRequires : kconfig
@@ -27,10 +28,12 @@ BuildRequires : kconfig-dev
 BuildRequires : kcrash-dev
 BuildRequires : kdbusaddons-dev
 BuildRequires : kfilemetadata-dev
+BuildRequires : ki18n-dev
 BuildRequires : kidletime-dev
 BuildRequires : kio-dev
 BuildRequires : kitemviews-dev
 BuildRequires : kjobwidgets-dev
+BuildRequires : kservice-dev
 BuildRequires : kwidgetsaddons-dev
 BuildRequires : kxmlgui-dev
 BuildRequires : lmdb-dev
@@ -107,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534112783
+export SOURCE_DATE_EPOCH=1535424882
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -115,7 +118,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1534112783
+export SOURCE_DATE_EPOCH=1535424882
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/baloo
 cp COPYING %{buildroot}/usr/share/doc/baloo/COPYING
@@ -157,6 +160,8 @@ popd
 /usr/share/kservices5/baloosearch.protocol
 /usr/share/kservices5/tags.protocol
 /usr/share/kservices5/timeline.protocol
+/usr/share/xdg/autostart/baloo_file.desktop
+/usr/share/xdg/baloo.categories
 
 %files dev
 %defattr(-,root,root,-)
