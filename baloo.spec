@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : baloo
-Version  : 5.49.0
-Release  : 3
-URL      : https://download.kde.org/stable/frameworks/5.49/baloo-5.49.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.49/baloo-5.49.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.49/baloo-5.49.0.tar.xz.sig
+Version  : 5.50.0
+Release  : 4
+URL      : https://download.kde.org/stable/frameworks/5.50/baloo-5.50.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.50/baloo-5.50.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.50/baloo-5.50.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -20,25 +20,13 @@ Requires: baloo-license
 Requires: baloo-locales
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : kbookmarks-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
 BuildRequires : kconfig
 BuildRequires : kconfig-dev
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
 BuildRequires : kfilemetadata-dev
-BuildRequires : ki18n-dev
 BuildRequires : kidletime-dev
 BuildRequires : kio-dev
-BuildRequires : kitemviews-dev
-BuildRequires : kjobwidgets-dev
-BuildRequires : kservice-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kxmlgui-dev
 BuildRequires : lmdb-dev
 BuildRequires : qtbase-dev qtbase-extras mesa-dev
-BuildRequires : solid-dev
 
 %description
 # Baloo
@@ -103,14 +91,14 @@ locales components for the baloo package.
 
 
 %prep
-%setup -q -n baloo-5.49.0
+%setup -q -n baloo-5.50.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535424882
+export SOURCE_DATE_EPOCH=1536449658
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -118,7 +106,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535424882
+export SOURCE_DATE_EPOCH=1536449658
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/baloo
 cp COPYING %{buildroot}/usr/share/doc/baloo/COPYING
@@ -129,14 +117,14 @@ popd
 %find_lang baloo_file5
 %find_lang baloo_file_extractor5
 %find_lang balooctl5
+%find_lang baloodb5
+%find_lang balooengine5
 %find_lang baloomonitorplugin
 %find_lang baloosearch5
 %find_lang balooshow5
 %find_lang kio5_baloosearch
-%find_lang kio5_timeline
-%find_lang baloodb5
-%find_lang balooengine5
 %find_lang kio5_tags
+%find_lang kio5_timeline
 
 %files
 %defattr(-,root,root,-)
@@ -192,9 +180,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Baloo.so.5
-/usr/lib64/libKF5Baloo.so.5.49.0
+/usr/lib64/libKF5Baloo.so.5.50.0
 /usr/lib64/libKF5BalooEngine.so.5
-/usr/lib64/libKF5BalooEngine.so.5.49.0
+/usr/lib64/libKF5BalooEngine.so.5.50.0
 /usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
 /usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
 /usr/lib64/qt5/plugins/kf5/kio/tags.so
@@ -209,6 +197,6 @@ popd
 /usr/share/doc/baloo/COPYING
 /usr/share/doc/baloo/COPYING.LIB
 
-%files locales -f baloo_file5.lang -f baloo_file_extractor5.lang -f balooctl5.lang -f baloomonitorplugin.lang -f baloosearch5.lang -f balooshow5.lang -f kio5_baloosearch.lang -f kio5_timeline.lang -f baloodb5.lang -f balooengine5.lang -f kio5_tags.lang
+%files locales -f baloo_file5.lang -f baloo_file_extractor5.lang -f balooctl5.lang -f baloodb5.lang -f balooengine5.lang -f baloomonitorplugin.lang -f baloosearch5.lang -f balooshow5.lang -f kio5_baloosearch.lang -f kio5_tags.lang -f kio5_timeline.lang
 %defattr(-,root,root,-)
 
