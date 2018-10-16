@@ -5,28 +5,29 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : baloo
-Version  : 5.50.0
-Release  : 4
-URL      : https://download.kde.org/stable/frameworks/5.50/baloo-5.50.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.50/baloo-5.50.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.50/baloo-5.50.0.tar.xz.sig
+Version  : 5.51.0
+Release  : 5
+URL      : https://download.kde.org/stable/frameworks/5.51/baloo-5.51.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.51/baloo-5.51.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.51/baloo-5.51.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
-Requires: baloo-bin
-Requires: baloo-lib
-Requires: baloo-data
-Requires: baloo-license
-Requires: baloo-locales
+Requires: baloo-bin = %{version}-%{release}
+Requires: baloo-data = %{version}-%{release}
+Requires: baloo-lib = %{version}-%{release}
+Requires: baloo-license = %{version}-%{release}
+Requires: baloo-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules
 BuildRequires : kconfig
 BuildRequires : kconfig-dev
 BuildRequires : kfilemetadata-dev
 BuildRequires : kidletime-dev
 BuildRequires : kio-dev
 BuildRequires : lmdb-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 # Baloo
@@ -37,8 +38,8 @@ of your files.
 %package bin
 Summary: bin components for the baloo package.
 Group: Binaries
-Requires: baloo-data
-Requires: baloo-license
+Requires: baloo-data = %{version}-%{release}
+Requires: baloo-license = %{version}-%{release}
 
 %description bin
 bin components for the baloo package.
@@ -55,10 +56,10 @@ data components for the baloo package.
 %package dev
 Summary: dev components for the baloo package.
 Group: Development
-Requires: baloo-lib
-Requires: baloo-bin
-Requires: baloo-data
-Provides: baloo-devel
+Requires: baloo-lib = %{version}-%{release}
+Requires: baloo-bin = %{version}-%{release}
+Requires: baloo-data = %{version}-%{release}
+Provides: baloo-devel = %{version}-%{release}
 
 %description dev
 dev components for the baloo package.
@@ -67,8 +68,8 @@ dev components for the baloo package.
 %package lib
 Summary: lib components for the baloo package.
 Group: Libraries
-Requires: baloo-data
-Requires: baloo-license
+Requires: baloo-data = %{version}-%{release}
+Requires: baloo-license = %{version}-%{release}
 
 %description lib
 lib components for the baloo package.
@@ -91,26 +92,26 @@ locales components for the baloo package.
 
 
 %prep
-%setup -q -n baloo-5.50.0
+%setup -q -n baloo-5.51.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536449658
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1539649555
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1536449658
+export SOURCE_DATE_EPOCH=1539649555
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/baloo
-cp COPYING %{buildroot}/usr/share/doc/baloo/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/doc/baloo/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/baloo
+cp COPYING %{buildroot}/usr/share/package-licenses/baloo/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/baloo/COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -180,9 +181,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Baloo.so.5
-/usr/lib64/libKF5Baloo.so.5.50.0
+/usr/lib64/libKF5Baloo.so.5.51.0
 /usr/lib64/libKF5BalooEngine.so.5
-/usr/lib64/libKF5BalooEngine.so.5.50.0
+/usr/lib64/libKF5BalooEngine.so.5.51.0
 /usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
 /usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
 /usr/lib64/qt5/plugins/kf5/kio/tags.so
@@ -193,9 +194,9 @@ popd
 /usr/lib64/qt5/qml/org/kde/baloo/qmldir
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/baloo/COPYING
-/usr/share/doc/baloo/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/baloo/COPYING
+/usr/share/package-licenses/baloo/COPYING.LIB
 
 %files locales -f baloo_file5.lang -f baloo_file_extractor5.lang -f balooctl5.lang -f baloodb5.lang -f balooengine5.lang -f baloomonitorplugin.lang -f baloosearch5.lang -f balooshow5.lang -f kio5_baloosearch.lang -f kio5_tags.lang -f kio5_timeline.lang
 %defattr(-,root,root,-)
