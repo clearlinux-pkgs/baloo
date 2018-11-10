@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : baloo
-Version  : 5.51.0
-Release  : 5
-URL      : https://download.kde.org/stable/frameworks/5.51/baloo-5.51.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.51/baloo-5.51.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.51/baloo-5.51.0.tar.xz.sig
+Version  : 5.52.0
+Release  : 6
+URL      : https://download.kde.org/stable/frameworks/5.52/baloo-5.52.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.52/baloo-5.52.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.52/baloo-5.52.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -32,8 +32,17 @@ BuildRequires : qtbase-dev mesa-dev
 %description
 # Baloo
 ## Introduction
-Baloo provides file searching and indexing. It does so by maintaining an index of the contents
-of your files.
+Baloo is the file indexing and file search framework for KDE Plasma. It focuses
+on speed and a very small memory footprint. It maintains an index of your files
+and optionally their contents which [you can search](@ref searching).
+
+%package abi
+Summary: abi components for the baloo package.
+Group: Default
+
+%description abi
+abi components for the baloo package.
+
 
 %package bin
 Summary: bin components for the baloo package.
@@ -92,14 +101,14 @@ locales components for the baloo package.
 
 
 %prep
-%setup -q -n baloo-5.51.0
+%setup -q -n baloo-5.52.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539649555
+export SOURCE_DATE_EPOCH=1541877583
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -107,7 +116,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1539649555
+export SOURCE_DATE_EPOCH=1541877583
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
 cp COPYING %{buildroot}/usr/share/package-licenses/baloo/COPYING
@@ -129,6 +138,11 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libKF5Baloo.so.5.52.0.abi
+/usr/share/abi/libKF5BalooEngine.so.5.52.0.abi
 
 %files bin
 %defattr(-,root,root,-)
@@ -181,9 +195,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Baloo.so.5
-/usr/lib64/libKF5Baloo.so.5.51.0
+/usr/lib64/libKF5Baloo.so.5.52.0
 /usr/lib64/libKF5BalooEngine.so.5
-/usr/lib64/libKF5BalooEngine.so.5.51.0
+/usr/lib64/libKF5BalooEngine.so.5.52.0
 /usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
 /usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
 /usr/lib64/qt5/plugins/kf5/kio/tags.so
