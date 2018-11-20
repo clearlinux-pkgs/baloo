@@ -6,7 +6,7 @@
 #
 Name     : baloo
 Version  : 5.52.0
-Release  : 6
+Release  : 7
 URL      : https://download.kde.org/stable/frameworks/5.52/baloo-5.52.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.52/baloo-5.52.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.52/baloo-5.52.0.tar.xz.sig
@@ -21,13 +21,25 @@ Requires: baloo-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules
+BuildRequires : kbookmarks-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
 BuildRequires : kconfig
 BuildRequires : kconfig-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdbusaddons-dev
 BuildRequires : kfilemetadata-dev
+BuildRequires : ki18n-dev
 BuildRequires : kidletime-dev
 BuildRequires : kio-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
+BuildRequires : kservice-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : lmdb-dev
 BuildRequires : qtbase-dev mesa-dev
+BuildRequires : solid-dev
 
 %description
 # Baloo
@@ -35,14 +47,6 @@ BuildRequires : qtbase-dev mesa-dev
 Baloo is the file indexing and file search framework for KDE Plasma. It focuses
 on speed and a very small memory footprint. It maintains an index of your files
 and optionally their contents which [you can search](@ref searching).
-
-%package abi
-Summary: abi components for the baloo package.
-Group: Default
-
-%description abi
-abi components for the baloo package.
-
 
 %package bin
 Summary: bin components for the baloo package.
@@ -108,7 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541877583
+export SOURCE_DATE_EPOCH=1542675857
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -116,7 +120,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1541877583
+export SOURCE_DATE_EPOCH=1542675857
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
 cp COPYING %{buildroot}/usr/share/package-licenses/baloo/COPYING
@@ -138,11 +142,6 @@ popd
 
 %files
 %defattr(-,root,root,-)
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libKF5Baloo.so.5.52.0.abi
-/usr/share/abi/libKF5BalooEngine.so.5.52.0.abi
 
 %files bin
 %defattr(-,root,root,-)
