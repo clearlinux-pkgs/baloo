@@ -6,7 +6,7 @@
 #
 Name     : baloo
 Version  : 5.53.0
-Release  : 8
+Release  : 9
 URL      : https://download.kde.org/stable/frameworks/5.53/baloo-5.53.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.53/baloo-5.53.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.53/baloo-5.53.0.tar.xz.sig
