@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : baloo
-Version  : 5.63.0
-Release  : 21
-URL      : https://download.kde.org/stable/frameworks/5.63/baloo-5.63.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.63/baloo-5.63.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.63/baloo-5.63.0.tar.xz.sig
+Version  : 5.64.0
+Release  : 22
+URL      : https://download.kde.org/stable/frameworks/5.64/baloo-5.64.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.64/baloo-5.64.0.tar.xz
+Source1 : https://download.kde.org/stable/frameworks/5.64/baloo-5.64.0.tar.xz.sig
 Summary  : A framework for searching and managing metadata
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -108,14 +108,14 @@ locales components for the baloo package.
 
 
 %prep
-%setup -q -n baloo-5.63.0
+%setup -q -n baloo-5.64.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570984641
+export SOURCE_DATE_EPOCH=1573420988
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -132,11 +132,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570984641
+export SOURCE_DATE_EPOCH=1573420988
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
-cp COPYING %{buildroot}/usr/share/package-licenses/baloo/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/baloo/COPYING.LIB
+cp %{_builddir}/baloo-5.64.0/COPYING %{buildroot}/usr/share/package-licenses/baloo/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/baloo-5.64.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/baloo/01a6b4bf79aca9b556822601186afab86e8c4fbf
 pushd clr-build
 %make_install
 popd
@@ -206,9 +206,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Baloo.so.5
-/usr/lib64/libKF5Baloo.so.5.63.0
+/usr/lib64/libKF5Baloo.so.5.64.0
 /usr/lib64/libKF5BalooEngine.so.5
-/usr/lib64/libKF5BalooEngine.so.5.63.0
+/usr/lib64/libKF5BalooEngine.so.5.64.0
 /usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
 /usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
 /usr/lib64/qt5/plugins/kf5/kio/tags.so
@@ -220,8 +220,8 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/baloo/COPYING
-/usr/share/package-licenses/baloo/COPYING.LIB
+/usr/share/package-licenses/baloo/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/baloo/4cc77b90af91e615a64ae04893fdffa7939db84c
 
 %files locales -f baloo_file5.lang -f baloo_file_extractor5.lang -f balooctl5.lang -f baloodb5.lang -f balooengine5.lang -f baloomonitorplugin.lang -f baloosearch5.lang -f balooshow5.lang -f kio5_baloosearch.lang -f kio5_tags.lang -f kio5_timeline.lang
 %defattr(-,root,root,-)
