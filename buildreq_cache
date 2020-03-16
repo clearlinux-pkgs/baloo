@@ -1,4 +1,9 @@
-5.67.0
+5.68.0
+kcoreaddons-dev
+kcrash-dev
+kdbusaddons-dev
 kfilemetadata-dev
+ki18n-dev
 kidletime-dev
 lmdb-dev
+solid-dev
