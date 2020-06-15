@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : baloo
-Version  : 5.70.0
-Release  : 28
-URL      : https://download.kde.org/stable/frameworks/5.70/baloo-5.70.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.70/baloo-5.70.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.70/baloo-5.70.0.tar.xz.sig
+Version  : 5.71.0
+Release  : 29
+URL      : https://download.kde.org/stable/frameworks/5.71/baloo-5.71.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.71/baloo-5.71.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.71/baloo-5.71.0.tar.xz.sig
 Summary  : A framework for searching and managing metadata
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -95,15 +95,15 @@ locales components for the baloo package.
 
 
 %prep
-%setup -q -n baloo-5.70.0
-cd %{_builddir}/baloo-5.70.0
+%setup -q -n baloo-5.71.0
+cd %{_builddir}/baloo-5.71.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1589232501
+export SOURCE_DATE_EPOCH=1592256249
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -119,11 +119,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1589232501
+export SOURCE_DATE_EPOCH=1592256249
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
-cp %{_builddir}/baloo-5.70.0/COPYING %{buildroot}/usr/share/package-licenses/baloo/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/baloo-5.70.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/baloo/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/baloo-5.71.0/COPYING %{buildroot}/usr/share/package-licenses/baloo/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/baloo-5.71.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/baloo/01a6b4bf79aca9b556822601186afab86e8c4fbf
 pushd clr-build
 %make_install
 popd
@@ -193,9 +193,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Baloo.so.5
-/usr/lib64/libKF5Baloo.so.5.70.0
+/usr/lib64/libKF5Baloo.so.5.71.0
 /usr/lib64/libKF5BalooEngine.so.5
-/usr/lib64/libKF5BalooEngine.so.5.70.0
+/usr/lib64/libKF5BalooEngine.so.5.71.0
 /usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
 /usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
 /usr/lib64/qt5/plugins/kf5/kio/tags.so
