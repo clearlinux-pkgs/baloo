@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : baloo
-Version  : 5.87.0
-Release  : 40
-URL      : https://download.kde.org/stable/frameworks/5.87/baloo-5.87.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.87/baloo-5.87.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.87/baloo-5.87.0.tar.xz.sig
+Version  : 5.88.0
+Release  : 41
+URL      : https://download.kde.org/stable/frameworks/5.88/baloo-5.88.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.88/baloo-5.88.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.88/baloo-5.88.0.tar.xz.sig
 Summary  : A framework for searching and managing metadata
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 bzip2-1.0.6
@@ -25,16 +25,11 @@ BuildRequires : extra-cmake-modules
 BuildRequires : extra-cmake-modules-data
 BuildRequires : kconfig
 BuildRequires : kconfig-dev
-BuildRequires : kcoreaddons-dev
-BuildRequires : kcrash-dev
-BuildRequires : kdbusaddons-dev
 BuildRequires : kfilemetadata-dev
-BuildRequires : ki18n-dev
 BuildRequires : kidletime-dev
 BuildRequires : kio-dev
 BuildRequires : lmdb-dev
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : solid-dev
 
 %description
 # Baloo
@@ -110,15 +105,15 @@ services components for the baloo package.
 
 
 %prep
-%setup -q -n baloo-5.87.0
-cd %{_builddir}/baloo-5.87.0
+%setup -q -n baloo-5.88.0
+cd %{_builddir}/baloo-5.88.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634485144
+export SOURCE_DATE_EPOCH=1637009465
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -134,22 +129,22 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1634485144
+export SOURCE_DATE_EPOCH=1637009465
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
-cp %{_builddir}/baloo-5.87.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/baloo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/baloo-5.87.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/baloo/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/baloo-5.87.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/baloo/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/baloo-5.87.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/baloo/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/baloo-5.87.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/baloo/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/baloo-5.87.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/baloo/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/baloo-5.87.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/baloo/6f1f675aa5f6a2bbaa573b8343044b166be28399
-cp %{_builddir}/baloo-5.87.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/baloo/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/baloo-5.87.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/baloo/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/baloo-5.87.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/baloo/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/baloo-5.87.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/baloo/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/baloo-5.87.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/baloo/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/baloo-5.87.0/LICENSES/bzip2-1.0.6.txt %{buildroot}/usr/share/package-licenses/baloo/c86f08afa3409f52c8811ac27764e50469ef0bb0
+cp %{_builddir}/baloo-5.88.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/baloo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/baloo-5.88.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/baloo/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/baloo-5.88.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/baloo/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/baloo-5.88.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/baloo/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/baloo-5.88.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/baloo/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/baloo-5.88.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/baloo/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/baloo-5.88.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/baloo/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/baloo-5.88.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/baloo/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/baloo-5.88.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/baloo/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/baloo-5.88.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/baloo/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/baloo-5.88.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/baloo/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/baloo-5.88.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/baloo/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/baloo-5.88.0/LICENSES/bzip2-1.0.6.txt %{buildroot}/usr/share/package-licenses/baloo/c86f08afa3409f52c8811ac27764e50469ef0bb0
 pushd clr-build
 %make_install
 popd
@@ -216,9 +211,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Baloo.so.5
-/usr/lib64/libKF5Baloo.so.5.87.0
+/usr/lib64/libKF5Baloo.so.5.88.0
 /usr/lib64/libKF5BalooEngine.so.5
-/usr/lib64/libKF5BalooEngine.so.5.87.0
+/usr/lib64/libKF5BalooEngine.so.5.88.0
 /usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
 /usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
 /usr/lib64/qt5/plugins/kf5/kio/tags.so
