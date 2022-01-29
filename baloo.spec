@@ -6,7 +6,7 @@
 #
 Name     : baloo
 Version  : 5.90.0
-Release  : 43
+Release  : 44
 URL      : https://download.kde.org/stable/frameworks/5.90/baloo-5.90.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.90/baloo-5.90.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.90/baloo-5.90.0.tar.xz.sig
@@ -112,7 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1642097920
+export SOURCE_DATE_EPOCH=1643434982
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -128,7 +128,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1642097920
+export SOURCE_DATE_EPOCH=1643434982
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
 cp %{_builddir}/baloo-5.90.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/baloo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
@@ -179,6 +179,7 @@ popd
 /usr/share/dbus-1/interfaces/org.kde.baloo.scheduler.xml
 /usr/share/qlogging-categories5/baloo.categories
 /usr/share/qlogging-categories5/baloo.renamecategories
+/usr/share/xdg/autostart/baloo_file.desktop
 
 %files dev
 %defattr(-,root,root,-)
