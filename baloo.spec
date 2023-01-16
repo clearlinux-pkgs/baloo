@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : baloo
-Version  : 5.101.0
-Release  : 55
-URL      : https://download.kde.org/stable/frameworks/5.101/baloo-5.101.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.101/baloo-5.101.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.101/baloo-5.101.0.tar.xz.sig
+Version  : 5.102.0
+Release  : 56
+URL      : https://download.kde.org/stable/frameworks/5.102/baloo-5.102.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.102/baloo-5.102.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.102/baloo-5.102.0.tar.xz.sig
 Summary  : A framework for searching and managing metadata
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 bzip2-1.0.6
@@ -25,12 +25,14 @@ BuildRequires : extra-cmake-modules
 BuildRequires : extra-cmake-modules-data
 BuildRequires : kconfig
 BuildRequires : kconfig-dev
-BuildRequires : kcrash-dev
 BuildRequires : kfilemetadata-dev
 BuildRequires : kidletime-dev
 BuildRequires : kio-dev
 BuildRequires : lmdb-dev
 BuildRequires : qt6base-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 # Baloo
@@ -106,31 +108,31 @@ services components for the baloo package.
 
 
 %prep
-%setup -q -n baloo-5.101.0
-cd %{_builddir}/baloo-5.101.0
+%setup -q -n baloo-5.102.0
+cd %{_builddir}/baloo-5.102.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1671125324
+export SOURCE_DATE_EPOCH=1673911088
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1671125324
+export SOURCE_DATE_EPOCH=1673911088
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
 cp %{_builddir}/baloo-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/baloo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -213,9 +215,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Baloo.so.5
-/usr/lib64/libKF5Baloo.so.5.101.0
+/usr/lib64/libKF5Baloo.so.5.102.0
 /usr/lib64/libKF5BalooEngine.so.5
-/usr/lib64/libKF5BalooEngine.so.5.101.0
+/usr/lib64/libKF5BalooEngine.so.5.102.0
 /usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
 /usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
 /usr/lib64/qt5/plugins/kf5/kio/tags.so
