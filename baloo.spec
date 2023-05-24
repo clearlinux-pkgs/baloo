@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : baloo
-Version  : 5.105.0
-Release  : 60
-URL      : https://download.kde.org/stable/frameworks/5.105/baloo-5.105.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.105/baloo-5.105.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.105/baloo-5.105.0.tar.xz.sig
+Version  : 5.106.0
+Release  : 61
+URL      : https://download.kde.org/stable/frameworks/5.106/baloo-5.106.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.106/baloo-5.106.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.106/baloo-5.106.0.tar.xz.sig
 Summary  : A framework for searching and managing metadata
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 bzip2-1.0.6
@@ -110,31 +110,48 @@ services components for the baloo package.
 
 
 %prep
-%setup -q -n baloo-5.105.0
-cd %{_builddir}/baloo-5.105.0
+%setup -q -n baloo-5.106.0
+cd %{_builddir}/baloo-5.106.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681751252
+export SOURCE_DATE_EPOCH=1684946597
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1681751252
+export SOURCE_DATE_EPOCH=1684946597
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
 cp %{_builddir}/baloo-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/baloo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -151,6 +168,9 @@ cp %{_builddir}/baloo-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buil
 cp %{_builddir}/baloo-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/baloo/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/baloo-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/baloo/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/baloo-%{version}/LICENSES/bzip2-1.0.6.txt %{buildroot}/usr/share/package-licenses/baloo/c86f08afa3409f52c8811ac27764e50469ef0bb0 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -164,14 +184,20 @@ popd
 %find_lang kio5_baloosearch
 %find_lang kio5_tags
 %find_lang kio5_timeline
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
+/V3/usr/lib64/libexec/baloo_file
+/V3/usr/lib64/libexec/baloo_file_extractor
 /usr/lib64/libexec/baloo_file
 /usr/lib64/libexec/baloo_file_extractor
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/balooctl
+/V3/usr/bin/baloosearch
+/V3/usr/bin/balooshow
 /usr/bin/baloo_file
 /usr/bin/baloo_file_extractor
 /usr/bin/balooctl
@@ -191,6 +217,7 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKF5Baloo.so
 /usr/include/KF5/Baloo/Baloo/File
 /usr/include/KF5/Baloo/Baloo/FileMonitor
 /usr/include/KF5/Baloo/Baloo/IndexerConfig
@@ -218,10 +245,20 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKF5Baloo.so.5
+/V3/usr/lib64/libKF5Baloo.so.5.106.0
+/V3/usr/lib64/libKF5BalooEngine.so.5
+/V3/usr/lib64/libKF5BalooEngine.so.5.106.0
+/V3/usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
+/V3/usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
+/V3/usr/lib64/qt5/plugins/kf5/kio/tags.so
+/V3/usr/lib64/qt5/plugins/kf5/kio/timeline.so
+/V3/usr/lib64/qt5/qml/org/kde/baloo/experimental/libbaloomonitorplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/baloo/libbalooplugin.so
 /usr/lib64/libKF5Baloo.so.5
-/usr/lib64/libKF5Baloo.so.5.105.0
+/usr/lib64/libKF5Baloo.so.5.106.0
 /usr/lib64/libKF5BalooEngine.so.5
-/usr/lib64/libKF5BalooEngine.so.5.105.0
+/usr/lib64/libKF5BalooEngine.so.5.106.0
 /usr/lib64/qt5/plugins/kf5/kded/baloosearchmodule.so
 /usr/lib64/qt5/plugins/kf5/kio/baloosearch.so
 /usr/lib64/qt5/plugins/kf5/kio/tags.so
