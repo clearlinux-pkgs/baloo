@@ -5,15 +5,15 @@
 # autospec version: v10
 # autospec commit: 5905be9
 #
-# Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
+# Source0 file verified with key 0x2C8DF587A6D4AAC1 (nicolas.fella@kde.org)
 #
 Name     : baloo
-Version  : 6.1.0
-Release  : 78
-URL      : https://download.kde.org/stable/frameworks/6.1/baloo-6.1.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/6.1/baloo-6.1.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/6.1/baloo-6.1.0.tar.xz.sig
-Source2  : D7574483BB57B18D.pkey
+Version  : 6.2.0
+Release  : 79
+URL      : https://download.kde.org/stable/frameworks/6.2/baloo-6.2.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/6.2/baloo-6.2.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/6.2/baloo-6.2.0.tar.xz.sig
+Source2  : 2C8DF587A6D4AAC1.pkey
 Summary  : A framework for searching and managing metadata
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 bzip2-1.0.6
@@ -118,16 +118,16 @@ mkdir .gnupg
 chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
-grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) D7574483BB57B18D' gpg.status
-%setup -q -n baloo-6.1.0
-cd %{_builddir}/baloo-6.1.0
+grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) 2C8DF587A6D4AAC1' gpg.status
+%setup -q -n baloo-6.2.0
+cd %{_builddir}/baloo-6.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1713224405
+export SOURCE_DATE_EPOCH=1715644401
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -188,7 +188,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1713224405
+export SOURCE_DATE_EPOCH=1715644401
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/baloo
 cp %{_builddir}/baloo-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/baloo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -281,8 +281,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKF6Baloo.so.6.1.0
-/V3/usr/lib64/libKF6BalooEngine.so.6.1.0
+/V3/usr/lib64/libKF6Baloo.so.6.2.0
+/V3/usr/lib64/libKF6BalooEngine.so.6.2.0
 /V3/usr/lib64/qt6/plugins/kf6/kded/baloosearchmodule.so
 /V3/usr/lib64/qt6/plugins/kf6/kio/baloosearch.so
 /V3/usr/lib64/qt6/plugins/kf6/kio/tags.so
@@ -290,9 +290,9 @@ popd
 /V3/usr/lib64/qt6/qml/org/kde/baloo/experimental/libbaloomonitorplugin.so
 /V3/usr/lib64/qt6/qml/org/kde/baloo/libbalooplugin.so
 /usr/lib64/libKF6Baloo.so.6
-/usr/lib64/libKF6Baloo.so.6.1.0
+/usr/lib64/libKF6Baloo.so.6.2.0
 /usr/lib64/libKF6BalooEngine.so.6
-/usr/lib64/libKF6BalooEngine.so.6.1.0
+/usr/lib64/libKF6BalooEngine.so.6.2.0
 /usr/lib64/qt6/plugins/kf6/kded/baloosearchmodule.so
 /usr/lib64/qt6/plugins/kf6/kio/baloosearch.so
 /usr/lib64/qt6/plugins/kf6/kio/tags.so
